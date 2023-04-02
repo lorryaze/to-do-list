@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export function Form(props) {
   const [input, setInput] = useState("");
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -25,8 +31,9 @@ export function Form(props) {
         name="text"
         className="todo-input"
         onChange={handleChange}
+        ref={inputRef}
       />
-      <button className="submit">Add</button>
+      <button className="submit-button">{props.name}</button>
     </form>
   );
 }

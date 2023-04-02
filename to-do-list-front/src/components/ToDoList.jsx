@@ -15,6 +15,21 @@ export function ToDoList() {
     console.log(...items);
   };
 
+  const removeItem = (id) => {
+    const removeFromArr = [...items].filter((item) => item.id !== id);
+    setItems(removeFromArr);
+  };
+
+  const updateItem = (itemId, newValue) => {
+    if (!newValue.text || newValue == null || /^s*$/.test(newValue.text)) {
+      alert("Please Fill In a Valid Input");
+      return;
+    }
+    setItems((prev) =>
+      prev.map((item) => (item.id === itemId ? newValue : item))
+    );
+  };
+
   const completeItem = (id) => {
     let updateItems = items.map((item) => {
       if (item.id === id) {
@@ -27,8 +42,13 @@ export function ToDoList() {
 
   return (
     <div>
-      <Form onSubmit={addItem} />
-      <Item items={items} completeItem={completeItem} />
+      <Form onSubmit={addItem} name={"Add"} />
+      <Item
+        items={items}
+        completeItem={completeItem}
+        removeItem={removeItem}
+        updateItem={updateItem}
+      />
     </div>
   );
 }

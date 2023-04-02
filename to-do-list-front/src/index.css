@@ -34,6 +34,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #5d0cff;
 }
 
 button {
@@ -43,7 +44,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  margin-left: 5px;
+  background: linear-gradient(
+    90deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+  color: #fff;
+  text-transform: capitalize;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -66,4 +74,50 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+.complete {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.todo-form {
+  margin-bottom: 32px;
+}
+
+.todo-input::placeholder {
+  color: #5d0cff;
+}
+
+.todo-input {
+  padding: 12px 30px 12px 14px;
+  border-radius: 8px;
+  border: 2px solid #5d0cff;
+  outline: none;
+  width: 264px;
+  background: transparent;
+  color: #5319c5;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+
+  padding: 16px;
+  border-radius: 5px;
+  width: 90%;
 }
