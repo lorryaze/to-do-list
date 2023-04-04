@@ -10,14 +10,41 @@ export function ToDoList() {
       alert("Please Fill In a Valid Input");
       return;
     }
+
     const newItems = [item, ...items];
-    setItems(newItems);
-    console.log(...items);
+
+    const url = `http://localhost:3000/items?id=${encodeURIComponent(
+      item.id
+    )}&text=${encodeURIComponent(item.text)}`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setItems(newItems);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    console.log(item);
   };
 
   const removeItem = (id) => {
-    const removeFromArr = [...items].filter((item) => item.id !== id);
-    setItems(removeFromArr);
+    const url = `http://localhost:3000/items/${encodeURIComponent(id)}`;
+
+    fetch(url, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const removeFromArr = [...items].filter((item) => item.id !== id);
+        setItems(removeFromArr);
+        console.log("Item deleted successfully");
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
   };
 
   const updateItem = (itemId, newValue) => {
@@ -25,9 +52,22 @@ export function ToDoList() {
       alert("Please Fill In a Valid Input");
       return;
     }
-    setItems((prev) =>
-      prev.map((item) => (item.id === itemId ? newValue : item))
-    );
+
+    const url = `http://localhost:3000/items/${encodeURIComponent(itemId)}`;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newValue),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setItems((prev) =>
+          prev.map((item) => (item.id === itemId ? newValue : item))
+        );
+      })
+      .catch((error) => console.error(error));
   };
 
   const completeItem = (id) => {

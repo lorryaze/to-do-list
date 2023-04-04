@@ -5,6 +5,7 @@ export function Form(props) {
 
   const inputRef = useRef(null);
 
+  //foca automaticamente no input
   useEffect(() => {
     inputRef.current.focus();
   });
