@@ -1,13 +1,13 @@
 module.exports = {
-  //rootDir: "./to-do-list-front",
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/.jest/setup-tests.js"],
+  moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
   moduleNameMapper: {
     "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/.jest/mocks/fileMocks.js",
     "\\.(css|less|sass|scss)$": "identity-obj-proxy",
   },
   transform: {
-    "^.+\\.js$": "babel-jest",
+    "^.+\\.(js|jsx)$": "babel-jest",
   },
   globals: {
     "babel-jest": {
