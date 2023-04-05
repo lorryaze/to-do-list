@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function Form(props) {
+export function Form(props) {
   const [input, setInput] = useState("");
 
   const inputRef = useRef(null);
@@ -38,5 +38,4 @@ function Form(props) {
     </form>
   );
 }
-
 export default Form;

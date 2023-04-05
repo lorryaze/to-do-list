@@ -33,12 +33,16 @@ export function Item({ items, completeItem, removeItem, updateItem }) {
         <RiCloseCircleLine
           onClick={() => removeItem(item.id)}
           className="delete-icon"
+          data-testid="delete-button"
         />
         <TiEdit
           onClick={() => setEditItem({ id: item.id, value: item.text })}
           className="edit-icon"
+          data-testid="edit-button"
         />
       </div>
     </div>
   ));
 }
+
+export default Item;
